@@ -16,7 +16,7 @@ public class CriarPedidoUseCase {
     public PedidoEntity executar(PedidoRequestDTO dto) {
         PedidoEntity pedido = new PedidoEntity();
         pedido.setStatus(StatusPedido.RECEBIDO.toString());
-        pedido.setItens(dto.toItensEntity());
+        pedido.setItens(dto.toItensEntity(pedido));
         pedido.setClienteId(dto.getClienteId());
         return pedidoRepository.save(pedido);
     }

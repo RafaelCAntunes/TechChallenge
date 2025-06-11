@@ -16,9 +16,9 @@ public class ProdutoResponseDTO {
 
     public ProdutoResponseDTO(ProdutoEntity produto) {
         this.id = produto.getId();
-        this.nome = produto.getNomeProduto();
+        this.nome = produto.getNome();
         this.descricao = produto.getDescricao();
-        this.preco = produto.getPrecoUnitario();
+        this.preco = produto.getPreco();
         this.categoria = produto.getCategoria();
     }
 }

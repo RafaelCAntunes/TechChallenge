@@ -1,12 +1,11 @@
-version: "3.8"
-
 services:
   app:
     build: .
     ports:
       - "8080:8080"
     depends_on:
-      - mysql
+       mysql:
+         condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/lanchonete
       SPRING_DATASOURCE_USERNAME: root
@@ -30,6 +29,11 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - app-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
 volumes:
   mysql-data:

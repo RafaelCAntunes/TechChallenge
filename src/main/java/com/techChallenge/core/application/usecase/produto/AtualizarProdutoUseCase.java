@@ -16,9 +16,9 @@ public class AtualizarProdutoUseCase {
         ProdutoEntity produtoAtual = produtoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 
-        produtoAtual.setNomeProduto(novoProduto.getNomeProduto());
+        produtoAtual.setNome(novoProduto.getNome());
         produtoAtual.setDescricao(novoProduto.getDescricao());
-        produtoAtual.setPrecoUnitario(novoProduto.getPrecoUnitario());
+        produtoAtual.setPreco(novoProduto.getPreco());
         produtoAtual.setCategoria(novoProduto.getCategoria());
 
         return produtoRepository.save(produtoAtual);
