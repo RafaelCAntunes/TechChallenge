@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-init-sql
+  namespace: techchallenge
+data:
+  schema.sql: |
+    CREATE TABLE IF NOT EXISTS produtos (
+      id BIGINT AUTO_INCREMENT PRIMARY KEY,
+      nome VARCHAR(255),
+      descricao TEXT,
+      preco DECIMAL(10,2),
+      categoria VARCHAR(100)
+    );
+  data.sql: |
+    INSERT INTO produtos (nome, descricao, preco, categoria)
+    VALUES
+      ('X-Burguer', 'Pao, carne e queijo', 19.90, 'LANCHE'),
+      ('Refrigerante', 'Lata 350ml', 6.00, 'BEBIDA'),
+      ('Batata Frita', 'Porcao pequena', 8.50, 'ACOMPANHAMENTO'),
+      ('Sunday', 'sorvete de baunilha com cobertura de chocolate', 9.90, 'SOBREMESA');

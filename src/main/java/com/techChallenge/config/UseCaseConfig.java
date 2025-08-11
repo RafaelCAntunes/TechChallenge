@@ -3,10 +3,7 @@ package com.techChallenge.config;
 import com.techChallenge.application.cliente.CadastrarClienteUseCase;
 import com.techChallenge.application.cliente.IdentificarClienteUseCase;
 import com.techChallenge.application.cliente.ListarClientesUseCase;
-import com.techChallenge.application.pedido.AtualizarStatusPedidoUseCase;
-import com.techChallenge.application.pedido.CheckoutPedidoUseCase;
-import com.techChallenge.application.pedido.ConsultarStatusPagamentoUseCase;
-import com.techChallenge.application.pedido.ListarPedidosUseCase;
+import com.techChallenge.application.pedido.*;
 import com.techChallenge.application.produto.*;
 import com.techChallenge.domain.cliente.ClienteRepositoryPort;
 import com.techChallenge.domain.pedido.PagamentoServicePort;
@@ -34,6 +31,12 @@ public class UseCaseConfig {
     public AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase(PedidoRepositoryPort pedidoRepository) {
         return new AtualizarStatusPedidoUseCase(pedidoRepository);
     }
+
+    @Bean
+    public AtualizarStatusPagamentoUseCase atualizarStatusPagamentoUseCase(PedidoRepositoryPort pedidoRepository) {
+        return new AtualizarStatusPagamentoUseCase(pedidoRepository);
+    }
+
 
     @Bean
     public ListarPedidosUseCase listarPedidosUseCase(PedidoRepositoryPort pedidoRepository) {
