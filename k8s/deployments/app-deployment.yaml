@@ -6,7 +6,7 @@ metadata:
   labels:
     app: techchallenge-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: techchallenge-api
@@ -15,6 +15,19 @@ spec:
       labels:
         app: techchallenge-api
     spec:
+      initContainers:
+        - name: wait-for-mysql
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              echo "Aguardando subida do MySQL..."
+              until nc -z mysql-service 3306; do
+                echo "Aguardando subida do MySQL..."
+                sleep 2
+              done
+              echo "MySQL startado"
       containers:
         - name: techchallenge-api
           image: rafa36/techchallenge:latest
@@ -28,12 +41,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mysql-credentials
-                  key: username
+                  key: app-username
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mysql-credentials
-                  key: password
+                  key: app-password
             - name: SPRING_CONFIG_LOCATION
               value: /config/application.yml
           volumeMounts:

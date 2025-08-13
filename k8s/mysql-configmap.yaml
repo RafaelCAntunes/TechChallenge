@@ -4,7 +4,12 @@ metadata:
   name: mysql-init-sql
   namespace: techchallenge
 data:
-  schema.sql: |
+  01-init-user.sql: |
+    CREATE DATABASE IF NOT EXISTS tech_challenge;
+    CREATE USER IF NOT EXISTS 'appuser'@'%' IDENTIFIED BY 'senha123';
+    GRANT ALL PRIVILEGES ON tech_challenge.* TO 'appuser'@'%';
+    FLUSH PRIVILEGES;
+  02-schema.sql: |
     CREATE TABLE IF NOT EXISTS produtos (
       id BIGINT AUTO_INCREMENT PRIMARY KEY,
       nome VARCHAR(255),
@@ -12,7 +17,7 @@ data:
       preco DECIMAL(10,2),
       categoria VARCHAR(100)
     );
-  data.sql: |
+  03-data.sql: |
     INSERT INTO produtos (nome, descricao, preco, categoria)
     VALUES
       ('X-Burguer', 'Pao, carne e queijo', 19.90, 'LANCHE'),
