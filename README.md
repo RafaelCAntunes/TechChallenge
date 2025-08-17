@@ -17,3 +17,12 @@ Se estiver rodando o Kubernetes localmente (por exemplo, via Docker Desktop),
 será necessário fazer um port-forward para acessar via localhost:
 
 kubectl port-forward svc/techchallenge-service 8080:80 -n techchallenge
+```
+Link para acessar o swagger:
+
+```bash
+http://localhost:8080/swagger-ui.html
+```
+
+Desenho da arquitetura Kubernetes
+![Desenho Arquitetura K8s](docs/Arquitetura_k8s.png)
